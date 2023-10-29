@@ -1,0 +1,51 @@
+{
+  "name": "oh-my-spreadsheets",
+  "version": "1.0.0",
+  "description": "There is a library that provides convenient features for working with Google spreadsheets",
+  "main": "build/index.js",
+  "module": "build/index.js",
+  "types": "build/index.d.ts",
+  "type": "commonjs",
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "google",
+    "spreadsheets",
+    "api",
+    "data",
+    "database"
+  ],
+  "scripts": {
+    "build": "rm -rf ./build && tsc -p tsconfig.json",
+    "build:dev": "tsc -p tsconfig.json && node build/dev",
+    "dev": "nodemon --watch src/ --exec \"npm run build:dev\" -e ts",
+    "test": "jest"
+  },
+  "author": "Aleskei Zaitsev <alexej3ajtsev@gmail.com>",
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.15.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.8.7",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "googleapis": "^128.0.0"
+  }
+}
