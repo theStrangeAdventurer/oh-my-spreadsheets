@@ -1,11 +1,15 @@
 {
   "name": "oh-my-spreadsheets",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "There is a library that provides convenient features for working with Google spreadsheets",
   "main": "build/index.js",
   "module": "build/index.js",
   "types": "build/index.d.ts",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:theStrangeAdventurer/oh-my-spreadsheets.git"
+  },
   "files": [
     "build"
   ],

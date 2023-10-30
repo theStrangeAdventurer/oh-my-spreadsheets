@@ -1,4 +1,6 @@
 # Oh my spreadsheets
+[![npm version](https://img.shields.io/npm/v/tiny-track)](https://www.npmjs.com/package/oh-my-spreadsheets)
+
 ![demo](https://storage.yandexcloud.net/zajtsev-tts/blog/oh-my-spreadsheets-demo.gif)
 
 Easy to use and type-safe library that allows seamless interaction with Google Spreadsheets as if they were a database.
@@ -6,7 +8,7 @@ Easy to use and type-safe library that allows seamless interaction with Google S
 
 ## Prerequisites
 
-- To get started, you'll need to obtain a credentials file for your service account, which will be used to interact with your Google Spreadsheet. [link1](https://www.section.io/engineering-education/google-sheets-api-in-nodejs/), [link2](https://thestrangeadventurer.com/) (My blog 😁 in Russian)
+- To get started, you'll need to obtain a credentials file for your service account, which will be used to interact with your Google Spreadsheet. [link1](https://www.section.io/engineering-education/google-sheets-api-in-nodejs/), [link2](https://thestrangeadventurer.com/kak-ispolzovat-google-sheets-v-kachestve-bazy-dannyh/) (My blog in Russian)
 
 - After that you will need the `client_email` and `private_key` fields from the received file. 
 
