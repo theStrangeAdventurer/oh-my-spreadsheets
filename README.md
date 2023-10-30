@@ -1,5 +1,5 @@
 # Oh my spreadsheets
-[![npm version](https://img.shields.io/npm/v/tiny-track)](https://www.npmjs.com/package/oh-my-spreadsheets)
+[![npm version](https://img.shields.io/npm/v/oh-my-spreadsheets)](https://www.npmjs.com/package/oh-my-spreadsheets)
 
 ![demo](https://storage.yandexcloud.net/zajtsev-tts/blog/oh-my-spreadsheets-demo.gif)
 
