@@ -17,6 +17,8 @@
     "google",
     "spreadsheets",
     "api",
+    "nodejs",
+    "nodejs_google_spreadsheets_api",
     "data",
     "database"
   ],
@@ -26,7 +28,7 @@
     "dev": "nodemon --watch src/ --exec \"npm run build:dev\" -e ts",
     "test": "jest"
   },
-  "author": "Aleskei Zaitsev <alexej3ajtsev@gmail.com>",
+  "author": "Aleksei Zaitsev <alexej3ajtsev@gmail.com>",
   "license": "ISC",
   "engines": {
     "node": ">=16.15.0"
