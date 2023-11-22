@@ -16,6 +16,16 @@ const usersTable = new Users(scheme, {
 async function main() {
   await usersTable.init();
   const users = await usersTable.list();
+  console.log('Users: ', users);
+
+  // if (!users.length) {
+  //   await usersTable.append({
+  //     data: {
+  //       username: 'notking',
+  //       email: 'none',
+  //     },
+  //   });
+  // }
 
   // await usersTable.update({
   //   where: { email: 'none' },
@@ -29,7 +39,7 @@ async function main() {
   //   },
   // });
 
-  await usersTable.remove({ where: { email: 'awesomewmail@mail.com' } });
+  // await usersTable.remove({ where: { email: 'awesomewmail@mail.com' } });
 }
 
 void main();

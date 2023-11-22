@@ -99,7 +99,7 @@ export abstract class Table<T extends Partial<Record<Columns, Field>> = {}> {
 
     const opt = {
       spreadsheetId: this.options.tableId,
-      range: `A${offset}:D${count}`,
+      range: `A${offset}:Z${count}`,
     };
 
     let data = await this.gsapi!.spreadsheets.values.get(opt);

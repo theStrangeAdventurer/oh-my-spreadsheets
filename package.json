@@ -1,6 +1,6 @@
 {
   "name": "oh-my-spreadsheets",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "There is a library that provides convenient features for working with Google spreadsheets",
   "main": "build/index.js",
   "module": "build/index.js",
