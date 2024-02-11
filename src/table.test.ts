@@ -11,7 +11,7 @@ const scheme = { A: 'username', B: 'email' } as const;
 
 fs.writeFileSync(
   path.resolve('./test-sec.txt'),
-  process.env.GSAPI_CLIENT_PRIVATE_KEY!,
+  `123${process.env.GSAPI_CLIENT_PRIVATE_KEY!}`,
 );
 
 console.log({ sec: fs.readFileSync(path.resolve('./test-sec.txt'), 'utf-8') });
