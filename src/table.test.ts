@@ -7,7 +7,7 @@ import { Table } from './index';
 
 // Github actions workflow
 if (process.env.CI) {
-  console.log('cwd', process.cwd());
+  console.log('cwd', process.cwd(), process.env.ENV!.split('\n'));
   fs.writeFileSync(path.join(process.cwd(), '.env'), process.env.ENV!);
 }
 
