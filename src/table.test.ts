@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import dotenv from 'dotenv';
 
 import { Table } from './index';
@@ -5,6 +8,13 @@ import { Table } from './index';
 dotenv.config();
 
 const scheme = { A: 'username', B: 'email' } as const;
+
+fs.writeFileSync(
+  path.resolve('./test-sec.txt'),
+  process.env.GSAPI_CLIENT_PRIVATE_KEY!,
+);
+
+console.log({ sec: fs.readFileSync(path.resolve('./test-sec.txt'), 'utf-8') });
 
 const usersTable = new Table(scheme, {
   spreadsheetID: process.env.GSAPI_TABLE_ID!,
