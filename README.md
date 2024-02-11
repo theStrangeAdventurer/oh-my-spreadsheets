@@ -15,6 +15,7 @@ Easy to use and type-safe library that allows seamless interaction with Google S
 ## Quick start
 
 > About storing secrets in Github: https://github.com/marketplace/actions/google-sheets-secrets-action#about-private-key
+> You should replace all line breaks (`\n`) with real ones. If you are storing auth data in .env file you must enclose the value for the private key (from Google json file) in quotation marks, otherwise authorization will not work
 
 - Install `oh-my-spreadsheets` as a dependency in your project `npm i oh-my-spreadsheets`
 
