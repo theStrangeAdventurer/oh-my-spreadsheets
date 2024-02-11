@@ -1,15 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import dotenv from 'dotenv';
 
 import { Table } from './index';
 
-dotenv.config();
-
 // Github actions workflow
 if (process.env.CI) {
-  process.env.GSAPI_CLIENT_PRIVATE_KEY = `-----BEGIN PRIVATE KEY-----
-  ${process.env.PRIVATE_KEY}
-  -----END PRIVATE KEY-----`;
+  console.log('cwd', process.cwd());
+  fs.writeFileSync(path.join(process.cwd(), '.env'), process.env.ENV!);
 }
+
+dotenv.config();
 
 console.log(
   'process.env.GSAPI_CLIENT_PRIVATE_KEY',

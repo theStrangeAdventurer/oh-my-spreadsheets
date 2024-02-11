@@ -6,9 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      GSAPI_TABLE_ID: ${{ secrets.GSAPI_TABLE_ID }}
-      GSAPI_CLIENT_EMAIL: ${{ secrets.GSAPI_CLIENT_EMAIL }}
-      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      ENV: ${{ secrets.ENV }} # .env file content
       CI: true
 
     steps:
