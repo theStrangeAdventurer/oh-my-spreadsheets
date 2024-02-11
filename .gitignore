@@ -4,6 +4,8 @@
 # build folder
 build
 
+.DS_Store
+
 # modules
 node_modules
 

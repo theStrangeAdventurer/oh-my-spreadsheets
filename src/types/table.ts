@@ -27,6 +27,15 @@ export const SPREADSHEETS_COLUMNS = {
   Z: 25,
 } as const;
 
+export interface Filterable<T extends object> {
+  /**
+   * Specifies the conditions to filter the data based on the partial values of the fields.
+   * ! It is important to note that filtering is applied after receiving the data, unlike the limit and offset.
+   * Keep this in mind when receiving data
+   */
+  where: Partial<Record<Values<T>, Field>>;
+}
+
 export const SPREADSHEETS_COLUMNS_INVERTED = Object.keys(
   SPREADSHEETS_COLUMNS,
 ).reduce((acc, col) => {

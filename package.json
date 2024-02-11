@@ -1,7 +1,7 @@
 {
   "name": "oh-my-spreadsheets",
-  "version": "1.1.0",
-  "description": "There is a library that provides convenient features for working with Google spreadsheets",
+  "version": "2.0.0",
+  "description": "Library for conveniently performing CRUD (Create, Read, Update, Delete) operations on data in Google Sheets.",
   "main": "build/index.js",
   "module": "build/index.js",
   "types": "build/index.d.ts",
@@ -26,7 +26,8 @@
     "build": "rm -rf ./build && tsc -p tsconfig.json",
     "build:dev": "tsc -p tsconfig.json && node build/dev",
     "dev": "nodemon --watch src/ --exec \"npm run build:dev\" -e ts",
-    "test": "jest"
+    "test": "jest --testTimeout=30000",
+    "ci:publish": "npm run build && npm publish"
   },
   "author": "Aleksei Zaitsev <alexej3ajtsev@gmail.com>",
   "license": "ISC",
@@ -44,6 +45,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
     "prettier": "^2.8.8",
     "ts-jest": "^29.1.0",
