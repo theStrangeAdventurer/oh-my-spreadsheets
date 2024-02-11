@@ -11,7 +11,8 @@
     "url": "git@github.com:theStrangeAdventurer/oh-my-spreadsheets.git"
   },
   "files": [
-    "build"
+    "build",
+    "public"
   ],
   "keywords": [
     "google",

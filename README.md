@@ -1,7 +1,8 @@
 # Oh my spreadsheets
 [![npm version](https://img.shields.io/npm/v/oh-my-spreadsheets)](https://www.npmjs.com/package/oh-my-spreadsheets)
+[![Run Tests](https://github.com/theStrangeAdventurer/oh-my-spreadsheets/actions/workflows/tests.yaml/badge.svg)](https://github.com/theStrangeAdventurer/oh-my-spreadsheets/actions/workflows/tests.yaml)
 
-![demo](https://storage.yandexcloud.net/zajtsev-tts/blog/oh-my-spreadsheets-demo.gif)
+![Oh my spreadsheets logo](./public/Oh-my-spreadsheets.jpg)
 
 Easy to use and type-safe library that allows seamless interaction with Google Spreadsheets as if they were a database.
 > Tip: Works exceptionally well with TypeScript
