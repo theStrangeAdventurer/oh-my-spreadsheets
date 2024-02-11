@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Test printing your secret (Remove this step in production)
+        run: printenv
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
