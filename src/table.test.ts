@@ -11,6 +11,11 @@ if (process.env.CI) {
   -----END PRIVATE KEY-----`;
 }
 
+console.log(
+  'process.env.GSAPI_CLIENT_PRIVATE_KEY',
+  process.env.GSAPI_CLIENT_PRIVATE_KEY,
+);
+
 const scheme = { A: 'username', B: 'email' } as const;
 
 const usersTable = new Table(scheme, {
