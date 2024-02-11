@@ -14,6 +14,8 @@ Easy to use and type-safe library that allows seamless interaction with Google S
 
 ## Quick start
 
+> About storing secrets in Github: https://github.com/marketplace/actions/google-sheets-secrets-action#about-private-key
+
 - Install `oh-my-spreadsheets` as a dependency in your project `npm i oh-my-spreadsheets`
 
 ```typescript

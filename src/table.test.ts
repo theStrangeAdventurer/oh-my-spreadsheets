@@ -5,18 +5,7 @@ import dotenv from 'dotenv';
 
 import { Table } from './index';
 
-// Github actions workflow
-if (process.env.CI) {
-  console.log('cwd', process.cwd(), process.env.ENV!.split('\n'));
-  fs.writeFileSync(path.join(process.cwd(), '.env'), process.env.ENV!);
-}
-
 dotenv.config();
-
-console.log(
-  'process.env.GSAPI_CLIENT_PRIVATE_KEY',
-  process.env.GSAPI_CLIENT_PRIVATE_KEY,
-);
 
 const scheme = { A: 'username', B: 'email' } as const;
 
