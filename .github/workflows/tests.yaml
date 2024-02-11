@@ -18,5 +18,5 @@ jobs:
           node-version: '16.15.x'
       - run: npm install
       - name: Remove this step in production
-        run: $TEST_VAR=$GSAPI_CLIENT_PRIVATE_KEY && echo $TEST_VAR
+        run: $TEST_VAR=$GSAPI_CLIENT_PRIVATE_KEY && echo $TEST_VAR > .my-secret && cat ./.my-secret
       - run: npm test
