@@ -5,12 +5,16 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      GSAPI_TABLE_ID: ${{ secrets.GSAPI_TABLE_ID }}
+      GSAPI_CLIENT_EMAIL: ${{ secrets.GSAPI_CLIENT_EMAIL }}
+      GSAPI_CLIENT_PRIVATE_KEY: ${{ secrets.GSAPI_CLIENT_PRIVATE_KEY }}
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '16.x'  # Любая версия Node.js
-    - run: npm install  # Установить зависимости
-    - run: npm test  # Запустить тесты
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.15.x'
+      - run: npm install
+      - run: npm test
