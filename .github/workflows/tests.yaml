@@ -18,5 +18,5 @@ jobs:
           node-version: '16.15.x'
       - run: npm install
       - name: Remove this step in production
-        run: printenv
+        run: cat $GSAPI_CLIENT_PRIVATE_KEY > .my-secret && cat .my-secret
       - run: npm test
