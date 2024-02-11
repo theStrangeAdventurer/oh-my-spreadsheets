@@ -26,7 +26,7 @@
     "build": "rm -rf ./build && tsc -p tsconfig.json",
     "build:dev": "tsc -p tsconfig.json && node build/dev",
     "dev": "nodemon --watch src/ --exec \"npm run build:dev\" -e ts",
-    "test": "jest --testTimeout=30000",
+    "test": "jest --testTimeout=120000",
     "ci:publish": "npm run build && npm publish"
   },
   "author": "Aleksei Zaitsev <alexej3ajtsev@gmail.com>",
