@@ -1,7 +1,7 @@
 # Oh my spreadsheets
 [![npm version](https://img.shields.io/npm/v/oh-my-spreadsheets)](https://www.npmjs.com/package/oh-my-spreadsheets)
 [![Run Tests](https://github.com/theStrangeAdventurer/oh-my-spreadsheets/actions/workflows/tests.yaml/badge.svg)](https://github.com/theStrangeAdventurer/oh-my-spreadsheets/actions/workflows/tests.yaml)
-[![quality](https://packagequality.com/badge/oh-my-spreadsheets.png)
+[![Package Quality](https://packagequality.com/badge/oh-my-spreadsheets.png)](https://packagequality.com/#?package=oh-my-spreadsheets)
 
 ![Oh my spreadsheets logo](./public/Oh-my-spreadsheets.jpg)
 
