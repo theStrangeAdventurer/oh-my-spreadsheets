@@ -100,13 +100,11 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
     await this.initCheck();
     const opt = {
       spreadsheetId: this.options.spreadsheetID,
-      range: `${this.getSheetRange()}A1:A`,
+      range: `${this.getSheetRange()}A1:Z`,
     };
 
     const data = await this.gsapi!.spreadsheets.values.get(opt);
-    const nonEmptyRows = (data.data.values || []).filter(
-      (row) => row[0] !== '',
-    ).length;
+    const nonEmptyRows = (data.data.values || []).length;
 
     return nonEmptyRows;
   }
