@@ -273,26 +273,28 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
   public async deleteRowByIndex(index: number | number[]) {
     await this.initCheck();
     const _indexes = Array.isArray(index) ? index : [index];
+
+    if (_indexes.length === 0) {
+      return null;
+    }
+
     const sheetID = await this.getSheetID();
 
-    const first = _indexes[0];
-    const last = _indexes[_indexes.length - 1] + 1;
+    const deleteDimensions = _indexes.map((index) => ({
+      deleteDimension: {
+        range: {
+          sheetId: sheetID,
+          dimension: "ROWS",
+          startIndex: index,
+          endIndex: index + 1,
+        },
+      },
+    }));
 
     const result = await this.gsapi!.spreadsheets.batchUpdate({
       spreadsheetId: this.options.spreadsheetID,
       requestBody: {
-        requests: [
-          {
-            deleteDimension: {
-              range: {
-                sheetId: sheetID,
-                dimension: 'ROWS',
-                startIndex: first,
-                endIndex: last,
-              },
-            },
-          },
-        ],
+        requests: deleteDimensions,
       },
     });
     return result;
