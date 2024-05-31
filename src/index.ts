@@ -276,6 +276,9 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
       return null;
     }
 
+    _indexes.sort();
+    _indexes.reverse();
+
     const sheetID = await this.getSheetID();
 
     const deleteDimensions = _indexes.map((index) => ({
@@ -332,7 +335,7 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
     await this.gsapi!.spreadsheets.values.append({
       spreadsheetId: this.options.spreadsheetID,
       valueInputOption: 'USER_ENTERED',
-      range: 'A1:A',
+      range: `${this.getSheetRange()}A1:A`,
       requestBody: {
         values: [values], // [ [ "Avalue", "Bvalue", "Cvalue"... ] ]
       },
