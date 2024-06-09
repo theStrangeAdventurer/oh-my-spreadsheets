@@ -1,13 +1,10 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
 import dotenv from 'dotenv';
 
 import { Table } from './index';
 
 dotenv.config();
 
-const scheme = { A: 'username', B: 'email' } as const;
+const scheme = { A: 'id', B: 'username', C: 'email', D: 'last_col' } as const;
 
 const usersTable = new Table(scheme, {
   spreadsheetID: process.env.GSAPI_TABLE_ID!,
@@ -16,33 +13,35 @@ const usersTable = new Table(scheme, {
   privateKey: process.env.GSAPI_CLIENT_PRIVATE_KEY!,
 });
 
-const TEST_DATA: [string, string?][] = [
+const TEST_DATA: [string?, string?, string?][] = [
   ['userWithoutMail2'],
   ['test', 'testmail@mail.com'],
   ['user2', 'another@mail.com'],
   ['userWithoutMail'],
   ['userololo', 'sssanother@mail.com'],
+  [undefined, 'nouser@name.email'],
 ];
 
 const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
 // Seed table
 beforeAll(async () => {
+  // so you can see the data after tests run
+  await usersTable.delete();
+  let id = 1;
   for (const row of TEST_DATA) {
-    const [username, email] = row;
+    const [username, email, lastCol] = row;
     await usersTable.create({
-      data: { username, email: email! },
+      data: {
+        id: String(id),
+        username: username!,
+        email: email!,
+        last_col: lastCol!,
+      },
     });
+    id += 1;
   }
   expect(await usersTable.count()).toBe(TEST_DATA.length);
-});
-
-// Remove all data
-afterAll(async () => {
-  await usersTable.delete();
-  const users = await usersTable.read();
-
-  expect(users.length).toBe(0);
 });
 
 beforeEach(async () => {
@@ -116,6 +115,33 @@ describe('table', () => {
     ).toBeTruthy();
   });
 
+  it('should update when last column undefined/empty', async () => {
+    const [noUserName] = await usersTable.read({
+      where: {
+        email: 'nouser@name.email',
+      },
+    });
+
+    expect(noUserName.last_col).toBe(undefined);
+
+    await usersTable.update({
+      where: {
+        email: 'nouser@name.email',
+      },
+      data: {
+        last_col: 'UPDATED',
+      },
+    });
+
+    const [noUserNameNow] = await usersTable.read({
+      where: {
+        email: 'nouser@name.email',
+      },
+    });
+
+    expect(noUserNameNow.last_col).toBe('UPDATED');
+  });
+
   it('should remove user', async () => {
     await usersTable.delete({ where: { username: 'user2' } });
     expect(
@@ -125,7 +151,12 @@ describe('table', () => {
 
   it('should create user', async () => {
     await usersTable.create({
-      data: { username: 'new user', email: 'freshuser@mail.com' },
+      data: {
+        id: String(432),
+        username: 'new user',
+        email: 'freshuser@mail.com',
+        last_col: 'pew pew',
+      },
     });
 
     const [user] = await usersTable.read({ where: { username: 'new user' } });

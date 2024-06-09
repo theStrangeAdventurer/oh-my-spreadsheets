@@ -18,10 +18,10 @@ import {
 } from './types/table';
 
 export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
-  private client: JWT | null = null;
+  private readonly client: JWT | null = null;
   private initiated = false;
   private gsapi: ReturnType<typeof google.sheets> | null = null;
-  private __invertedScheme: Record<Values<T>, Field>;
+  private readonly __invertedScheme: Record<Values<T>, Field>;
 
   constructor(
     /**
@@ -193,9 +193,11 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
     rows: RowValues<T>[],
     updateData: Partial<Record<Values<T>, Field>>,
   ): UpdatableData {
-    return rows.reduce((acc, row) => {
+    const updatableD = rows.reduce((acc, row) => {
       const rowIndex = row.__tableRowIndex;
-      const keys = Object.keys(row).filter((k) => k !== '__tableRowIndex');
+      const keys = Object.keys(this.__invertedScheme).filter(
+        (k) => k !== '__tableRowIndex',
+      );
       keys
         // @ts-expect-error keys are exists
         .map((k) => [`${this.__invertedScheme[k]}${rowIndex}`, updateData[k]])
@@ -204,6 +206,8 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
         });
       return acc;
     }, {} as UpdatableData);
+
+    return updatableD;
   }
 
   private filterData(
@@ -285,7 +289,7 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
       deleteDimension: {
         range: {
           sheetId: sheetID,
-          dimension: "ROWS",
+          dimension: 'ROWS',
           startIndex: index,
           endIndex: index + 1,
         },
