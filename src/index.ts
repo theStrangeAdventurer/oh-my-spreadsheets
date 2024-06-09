@@ -22,6 +22,7 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
   private initiated = false;
   private gsapi: ReturnType<typeof google.sheets> | null = null;
   private readonly __invertedScheme: Record<Values<T>, Field>;
+  private readonly __schemaKeys: string[];
 
   constructor(
     /**
@@ -59,6 +60,9 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
       acc[this.scheme[k as keyof typeof this.scheme]] = k;
       return acc;
     }, {} as Record<Values<T>, Field>);
+    this.__schemaKeys = Object.keys(this.__invertedScheme).filter(
+      (key) => key !== '__tableRowIndex',
+    );
     this.client = new google.auth.JWT(
       this.options.email,
       undefined,
@@ -195,10 +199,7 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
   ): UpdatableData {
     const updatableD = rows.reduce((acc, row) => {
       const rowIndex = row.__tableRowIndex;
-      const keys = Object.keys(this.__invertedScheme).filter(
-        (k) => k !== '__tableRowIndex',
-      );
-      keys
+      this.__schemaKeys
         // @ts-expect-error keys are exists
         .map((k) => [`${this.__invertedScheme[k]}${rowIndex}`, updateData[k]])
         .forEach((kv) => {
