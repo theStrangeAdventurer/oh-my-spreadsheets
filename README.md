@@ -42,9 +42,17 @@ const users = await usersTable.read({ limit: 10, offset: 0 });
 // Receive all rows 
 const users = await usersTable.read();
 
-// Add row
+// Add single row
 await usersTable.create({
     data: { username: 'test', email: 'test@mail.com' }
+});
+
+// Add multiple rows
+await usersTable.create({
+    data: [
+        { username: 'test1', email: 'test1@mail.com' },
+        { username: 'test2', email: 'test2@mail.com' }
+    ]
 });
 
 // Update user email
