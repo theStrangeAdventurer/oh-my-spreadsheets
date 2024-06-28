@@ -164,4 +164,31 @@ describe('table', () => {
     expect(user.username).toBe('new user');
     expect(user.email).toBe('freshuser@mail.com');
   });
+
+  it('should create users', async () => {
+    await usersTable.create({
+      data: [
+        {
+          id: String(543),
+          username: 'new user1',
+          email: 'user1@mail.com',
+          last_col: 'pew pew1',
+        },
+        {
+          id: String(654),
+          username: 'new user2',
+          email: 'user2@mail.com',
+          last_col: 'pew pew2',
+        },
+      ],
+    });
+
+    const [user1] = await usersTable.read({ where: { username: 'new user1' } });
+    const [user2] = await usersTable.read({ where: { username: 'new user2' } });
+
+    expect(user1.username).toBe('new user1');
+    expect(user1.email).toBe('user1@mail.com');
+    expect(user2.username).toBe('new user2');
+    expect(user2.email).toBe('user2@mail.com');
+  });
 });

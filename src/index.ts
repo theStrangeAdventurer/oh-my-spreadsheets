@@ -321,28 +321,36 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
     return true;
   }
 
-  public async create(options: { data: Record<Values<T>, Field> }) {
+  public async create(options: {
+    data: Record<Values<T>, Field> | Record<Values<T>, Field>[];
+  }) {
     await this.initCheck();
-    const { data = {} } = options;
-    const values = Object.keys(data).reduce<string[]>((acc, key) => {
-      const _k = key as Keys<typeof data>;
-      const val = data[_k];
-      const col = this.__invertedScheme[_k] as Keys<
-        typeof SPREADSHEETS_COLUMNS
-      >;
-      const ind: number = SPREADSHEETS_COLUMNS[col];
-      if (typeof ind === 'number') {
-        acc[ind] = val;
-      }
-      return acc;
-    }, []);
+    const { data = [] } = options;
+    const records = Array.isArray(data) ? data : [data];
+    if (records.length === 0) {
+      return null;
+    }
+    const values = records.map((record) =>
+      Object.keys(record).reduce<string[]>((acc, key) => {
+        const _k = key as Keys<typeof record>;
+        const val = record[_k];
+        const col = this.__invertedScheme[_k] as Keys<
+          typeof SPREADSHEETS_COLUMNS
+        >;
+        const ind: number = SPREADSHEETS_COLUMNS[col];
+        if (typeof ind === 'number') {
+          acc[ind] = val;
+        }
+        return acc;
+      }, []),
+    );
 
     await this.gsapi!.spreadsheets.values.append({
       spreadsheetId: this.options.spreadsheetID,
       valueInputOption: 'USER_ENTERED',
       range: `${this.getSheetRange()}A1:A`,
       requestBody: {
-        values: [values], // [ [ "Avalue", "Bvalue", "Cvalue"... ] ]
+        values: values, // [ [ "Avalue1", "Bvalue1", "Cvalue1"... ], [ "Avalue2", "Bvalue2", "Cvalue2"... ]... ]
       },
     });
   }
