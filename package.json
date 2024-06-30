@@ -1,6 +1,6 @@
 {
   "name": "oh-my-spreadsheets",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Library for conveniently performing CRUD (Create, Read, Update, Delete) operations on data in Google Sheets.",
   "main": "build/index.js",
   "module": "build/index.js",
@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git@github.com:theStrangeAdventurer/oh-my-spreadsheets.git"
   },
+  "contributors": [
+    {"name":"gerrycampion","url":"https://github.com/gerrycampion"},
+    {"name":"Geoff Dutton","url":"https://github.com/geoffdutton"}
+  ],
   "files": [
     "build",
     "public"
