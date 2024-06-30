@@ -1,3 +1,6 @@
+# 2.1.0
+- feat: added ability to batch create - https://github.com/theStrangeAdventurer/oh-my-spreadsheets/pull/5
+
 # 2.0.2
 - fix: Fix issue when updating an existing row with a last column that's empty/undefined - https://github.com/theStrangeAdventurer/oh-my-spreadsheets/pull/4
 
