@@ -354,4 +354,51 @@ export class Table<const T extends Partial<Record<Columns, Field>> = {}> {
       },
     });
   }
+
+  public async createTable() {
+    await this.initCheck();
+    if (await this.getSheetID()) {
+      return;
+    }
+    await this.gsapi!.spreadsheets.batchUpdate({
+      spreadsheetId: this.options.spreadsheetID,
+      requestBody: {
+        requests: [
+          {
+            addSheet: {
+              properties: {
+                title: this.options.sheet,
+              },
+            },
+          },
+        ],
+      },
+    });
+  }
+
+  public async deleteTable() {
+    await this.initCheck();
+    const sheets = await this.readSheets();
+    const sheetID = await this.getSheetID();
+    if (!sheets || !sheetID) {
+      return;
+    }
+    if (sheets.length <= 1) {
+      // You can't remove all the sheets in a document.
+      await this.delete();
+      return;
+    }
+    await this.gsapi!.spreadsheets.batchUpdate({
+      spreadsheetId: this.options.spreadsheetID,
+      requestBody: {
+        requests: [
+          {
+            deleteSheet: {
+              sheetId: sheetID,
+            },
+          },
+        ],
+      },
+    });
+  }
 }

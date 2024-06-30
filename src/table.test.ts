@@ -27,7 +27,8 @@ const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
 // Seed table
 beforeAll(async () => {
   // so you can see the data after tests run
-  await usersTable.delete();
+  await usersTable.deleteTable();
+  await usersTable.createTable();
   let id = 1;
   for (const row of TEST_DATA) {
     const [username, email, lastCol] = row;
