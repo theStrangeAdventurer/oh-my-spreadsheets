@@ -1,3 +1,6 @@
+# 2.1.1
+- fix: added contributors field in package.json
+
 # 2.1.0
 - feat: added ability to batch create - https://github.com/theStrangeAdventurer/oh-my-spreadsheets/pull/5
 
