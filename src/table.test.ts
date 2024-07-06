@@ -29,6 +29,7 @@ beforeAll(async () => {
   // so you can see the data after tests run
   await usersTable.deleteTable();
   await usersTable.createTable();
+  await delay();
   let id = 1;
   for (const row of TEST_DATA) {
     const [username, email, lastCol] = row;

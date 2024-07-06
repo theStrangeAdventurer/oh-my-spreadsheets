@@ -1,6 +1,6 @@
 {
   "name": "oh-my-spreadsheets",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Library for conveniently performing CRUD (Create, Read, Update, Delete) operations on data in Google Sheets.",
   "main": "build/index.js",
   "module": "build/index.js",

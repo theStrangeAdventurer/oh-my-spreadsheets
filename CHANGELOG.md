@@ -1,3 +1,6 @@
+# 2.2.0
+- feat: added creation and deletion of tables
+
 # 2.1.1
 - fix: added contributors field in package.json
 
