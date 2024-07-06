@@ -36,6 +36,9 @@ export const usersTable = new Table<typeof userSchema>(userSchema, {
     privateKey: '<service-account-private-key>',
 });
 
+// Create a new table
+await usersTable.createTable();
+
 // Receive rows 
 const users = await usersTable.read({ limit: 10, offset: 0 });
 
@@ -74,4 +77,7 @@ await usersTable.delete({
 
 // Delete all rows
 await usersTable.delete();
+
+// Delete the table
+await usersTable.deleteTable();
 ```
